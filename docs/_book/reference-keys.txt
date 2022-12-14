@@ -1,0 +1,17 @@
+setup-installation
+watchman
+windows
+macos
+bidscoin
+spec2nii
+dcm2niix
+configuration
+watchman-1
+editing-the-watchmantrigger
+activating-directory-monitoring
+main-automation-script
+dicomsort-arguments
+section
+osprey-e-mail-configuration
+configure-gmail
+configure-osprey

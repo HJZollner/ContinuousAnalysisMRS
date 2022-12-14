@@ -1,0 +1,14 @@
+[
+    "trigger",
+    "C:/Users/agudm/Johns Hopkins/Georg Oeltzschner - 62_CronJobMRS/ge-big-press-data",
+    {
+        "name"      :  "subtrigger"                         ,
+        "expression": [
+        				"allof",
+        						["match"  , "raw/sub*", "wholename"      ],
+        						["type"   , "d"                          ],
+        						["dirname", "raw"     , ["depth", "eq", 0]]
+        			  ],
+        "command"   : ["C:/Users/agudm/Anaconda3/python.exe", "C:/Users/agudm/Johns Hopkins/Georg Oeltzschner - 62_CronJobMRS/src/main.py", "-b", "C:/Users/agudm/Johns Hopkins/Georg Oeltzschner - 62_CronJobMRS/ge-big-press-data", "-o", "C:/Program Files/OspreyCMD/application"]
+    }
+]

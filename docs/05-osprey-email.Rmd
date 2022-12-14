@@ -1,0 +1,28 @@
+# Osprey e-mail configuration
+
+## Configure Gmail
+
+For security, MATLAB has to be enabled as an app for Gmail, and used in conjunction with an app-specific password. The following instructions set up your Gmail account to work with Matlab’s “sendmail” function.
+
+1.	Set up 2-factor authentication:
+  + Sign in to the Google account associated with the Gmail address.
+  + Navigate to settings -> security -> signing in to Google.
+  + There are several options.
+2.	With 2-factor authentication enabled:
+  + Navigate to settings -> security -> signing in to Google.
+  + A section called “App Passwords” should now be available.
+  + Under “Select app” type “MATLAB” and then select “generate”.
+  + A 16-digit code is produced that can be used in the Osprey email config file.
+
+## Configure Osprey
+
+With the appropriate configurations for the source email address in place, Osprey can be configured to send the email reports to the intended recipient(s).
+
+1.	Create a source email config JSON file containing two fields:
+  + `SourceEmail`: the email address to send reports from.
+  + `Password`: in the case of Gmail, this is the 16-digit passcode.
+2.	In the Osprey job file, two additional fields are required.
+  + `mailtoConfig`: the path to the JSON file created in step 1.
+  + `mailtoRecipients`: a cell array of recipient email addresses.
+
+The function, OspreyAutoMail, can be manually initiated at any time with a single argument, MRSCont. As a part of the automated pipeline, OspreyAutoMail is called at the conclusion of RunOspreyJob.m.

@@ -1,0 +1,24 @@
+# Main automation script
+
+## DICOMSORT arguments
+
+The main script calls the `dicomsort` function that inspects the newly added folders for DICOM files and sorts them into suitably named folders. This step helps the BIDScoin heuristics with the BIDS conversion.
+
+Depending on the DICOM header information, there might be a need to tailor the `dicomsort`command.
+
+For example, our GE DICOM test data lacked the DICOM tag `SeriesDescription` that is, by default, used to determine the output folder name for `dicomsort`. We could override it by using the field `ScanningSeries`. 
+
+In the main script, we replaced
+
+```
+script  = 'dicomsort {}'.format(subdir) # Script to Call
+```
+
+with
+
+```
+script  = 'dicomsort -f '{ScanningSeries}' {}'.format(subdir) # Script to Call
+```
+Here, we added `-f {ScanningSeries}` to tell `dicomsort` that it should use this tag to name the output folder.
+
+#### 

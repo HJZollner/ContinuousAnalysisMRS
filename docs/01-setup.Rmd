@@ -1,0 +1,72 @@
+# Setup & Installation
+
+## Watchman
+Watchman is a file watching service. It will monitor a given directory and execute commands when certain conditions are met. In our case, we are going to monitor the `raw` directory for a given study and execute a series of organization and analysis steps, including sorting dicoms, bids-ifying data, and running Osprey. 
+
+Installation instructions for Watchman can be found [here](https://facebook.github.io/watchman/docs/install.html) and are summarized below:
+
+### Windows
+First [install the Chocolatey package manager](https://chocolatey.org/install), similar to Homebrew on Mac or apt on Linux:
+1. Open the Windows PowerShell with Administrator rights.
+2. Make sure that the user rights are set appropriately:
+	1. Type `Get-ExecutionPolicy` at the prompt and hit Enter.
+	2. If it returns `Restricted`, then run `Set-ExecutionPolicy AllSigned` or `Set-ExecutionPolicy Bypass -Scope Process`.
+3. Run the following command:
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+4. Once Chocolatey is installed, run `choco install watchman`.
+
+### MacOS
+First [install the Homebrew package manager]():
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+Then install watchman:
+```
+brew update
+brew install watchman
+```
+
+## BIDScoin
+
+Detailed installation instructions can be found in the [BIDScoin documentation] (https://bidscoin.readthedocs.io/en/latest/installation.html) and are summarized below.
+
+Make sure that you have Python >= 3.8 installed on your system. It is recommended to set up a conda environment to maintain reproducibility (```conda env automated```)
+
+```
+pip install bidscoin[all] 
+```
+
+### spec2nii
+
+`spec2nii` is the tool converting raw MRS data into NIfTI-MRS format.
+
+Install with
+```conda install -c conda-forge spec2nii```
+or
+```pip install spec2nii```
+
+Detailed installation instructions at the [spec2nii GitHub repository](https://github.com/wtclarke/spec2nii) maintained by Will Clarke.
+
+### dcm2niix
+
+BIDScoin also requires `dcm2niix` to be installed (this is the tool that performs the conversion from DICOM to NIfTI). Download and extract the latest release from https://github.com/rordenlab/dcm2niix for your system. [MRICroGL](https://github.com/rordenlab/MRIcroGL) has `dcm2niix` built-in.
+
+Try running `bidscoin -t` from the prompt. If there is an error, you might need to link BIDScoin with `dcm2niix`. You can obtain the location of the `dcm2niix` executable by typing
+```
+which dcm2niix
+```
+Copy this location into the template BIDScoin bidsmap configuration file (you can locate it with `bidscoin -t`), which could, for example, be at `/Users/JohnDoe/anaconda3/lib/python3.8/site-packages/bidscoin/heuristics/bidsmap_dccn.yaml`. This file should then read
+
+```
+  plugins:                          # List of plugins with plugin-specific key-value pairs (that can be used by the plugin)
+    dcm2niix2bids:                  # See dcm2niix -h and https://www.nitrc.org/plugins/mwiki/index.php/dcm2nii:MainPage#General_Usage for more info
+      command: dcm2niix             # Command to run dcm2niix, e.g. "module add dcm2niix/1.0.20180622; dcm2niix" or "PATH=/opt/dcm2niix/bin:$PATH; dcm2niix" or /opt/dcm2niix/bin/dcm2niix or '"C:\Program Files\dcm2niix\dcm2niix.exe"' (use quotes to deal with whitespaces in the path)
+      args: -b y -z y -i n -l n     # Argument string that is passed to dcm2niix. Tip: SPM users may want to use '-z n' (which produces unzipped nifti's, see dcm2niix -h for more information)
+      anon: y                       # Set this anonymization flag to 'y' to round off age and discard acquisition date from the meta data
+      meta: [.json, .tsv, .tsv.gz]
+
+```
+
+where the path to the `dcm2niix` executable should be the value of the `command` field.

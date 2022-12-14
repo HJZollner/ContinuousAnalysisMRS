@@ -1,0 +1,19 @@
+--- 
+title: "Automated MRS data analysis workflow"
+author: "Georg Oeltzschner"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: krantz
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+fontsize: 12pt
+github-repo: schorschinho/automated-analysis-documentation
+description: "Documentation for automated MRS analysis."
+---
+
+# Welcome {-}
+
+

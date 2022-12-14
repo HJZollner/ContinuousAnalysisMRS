@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Automated MRS data analysis workflow | Automated MRS data analysis workflow</title>
+  <meta name="description" content="Documentation for automated MRS analysis." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Automated MRS data analysis workflow | Automated MRS data analysis workflow" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Documentation for automated MRS analysis." />
+  <meta name="github-repo" content="schorschinho/automated-analysis-documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Automated MRS data analysis workflow | Automated MRS data analysis workflow" />
+  
+  <meta name="twitter:description" content="Documentation for automated MRS analysis." />
+  
+
+<meta name="author" content="Georg Oeltzschner" />
+
+
+<meta name="date" content="2022-10-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="automated-mrs-data-analysis-workflow.html"><a href="automated-mrs-data-analysis-workflow.html"><i class="fa fa-check"></i><b>1</b> Automated MRS data analysis workflow</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="automated-mrs-data-analysis-workflow.html"><a href="automated-mrs-data-analysis-workflow.html#automation"><i class="fa fa-check"></i><b>1.1</b> Automation</a></li>
+<li class="chapter" data-level="1.2" data-path="automated-mrs-data-analysis-workflow.html"><a href="automated-mrs-data-analysis-workflow.html#osprey-e-mail-configuration"><i class="fa fa-check"></i><b>1.2</b> Osprey e-mail configuration</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Automated MRS data analysis workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="automated-mrs-data-analysis-workflow" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Automated MRS data analysis workflow<a href="automated-mrs-data-analysis-workflow.html#automated-mrs-data-analysis-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div id="automation" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Automation<a href="automated-mrs-data-analysis-workflow.html#automation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dependencies" class="section level4 hasAnchor" number="1.1.0.1">
+<h4><span class="header-section-number">1.1.0.1</span> Dependencies<a href="automated-mrs-data-analysis-workflow.html#dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Matlab</li>
+<li>Python</li>
+<li>Watchman</li>
+<li>dicomsort</li>
+<li>Bidskit</li>
+</ol>
+</div>
+<div id="watchman" class="section level4 hasAnchor" number="1.1.0.2">
+<h4><span class="header-section-number">1.1.0.2</span> Watchman<a href="automated-mrs-data-analysis-workflow.html#watchman" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>Watchman is file watching service. It will monitor a given directory and execute commands when certain conditions are met. In our case, we are going to monitor the <code>raw</code> directory for a given study and execute a series of organization and analysis steps, including sorting dicoms, bids-ifying data, and running Osprey.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Install Watchman (<a href="https://facebook.github.io/watchman/docs/install.html" class="uri">https://facebook.github.io/watchman/docs/install.html</a>)</li>
+<li>Watch Directory: <code>watchman watch $rawdirectory</code></li>
+<li>Setup Trigger : <code>watchman -j &lt; watchmantrigger.json</code></li>
+</ol>
+<pre><code>## This is the watchmantrigger.json
+[
+    &quot;trigger&quot;, 
+    &quot;$basedirectory/raw&quot;, 
+    {
+        &quot;name&quot;      :  &quot;subtrigger&quot;                        ,
+        &quot;expression&quot;: [&quot;match&quot;, &quot;sub*&quot; ]                   , 
+        &quot;command&quot;   : [&quot;python&quot;, &quot;$scriptdirectory/main.py&quot;, &quot;$basedirectory&quot;]
+    }
+]</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+
+</div>
+</div>
+<div id="osprey-e-mail-configuration" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Osprey e-mail configuration<a href="automated-mrs-data-analysis-workflow.html#osprey-e-mail-configuration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="configure-gmail" class="section level4 hasAnchor" number="1.2.0.1">
+<h4><span class="header-section-number">1.2.0.1</span> Configure Gmail<a href="automated-mrs-data-analysis-workflow.html#configure-gmail" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For security, MATLAB has to be enabled as an app for Gmail, and used in conjunction with an app-specific password. The following instructions set up your Gmail account to work with Matlab’s “sendmail” function.</p>
+<ol style="list-style-type: decimal">
+<li>Set up 2-factor authentication:</li>
+</ol>
+<ul>
+<li>Sign in to the Google account associated with the Gmail address.</li>
+<li>Navigate to settings -&gt; security -&gt; signing in to Google.</li>
+<li>There are several options.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>With 2-factor authentication enabled:</li>
+</ol>
+<ul>
+<li>Navigate to settings -&gt; security -&gt; signing in to Google.</li>
+<li>A section called “App Passwords” should now be available.</li>
+<li>Under “Select app” type “MATLAB” and then select “generate”.</li>
+<li>A 16-digit code is produced that can be used in the Osprey email config file.</li>
+</ul>
+</div>
+<div id="configure-osprey" class="section level4 hasAnchor" number="1.2.0.2">
+<h4><span class="header-section-number">1.2.0.2</span> Configure Osprey<a href="automated-mrs-data-analysis-workflow.html#configure-osprey" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>With the appropriate configurations for the source email address in place, Osprey can be configured to send the email reports to the intended recipient(s).</p>
+<ol style="list-style-type: decimal">
+<li>Create a source email config JSON file containing two fields:</li>
+</ol>
+<ul>
+<li><code>SourceEmail</code>: the email address to send reports from.</li>
+<li><code>Password</code>: in the case of Gmail, this is the 16-digit passcode.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>In the Osprey job file, two additional fields are required.</li>
+</ol>
+<ul>
+<li><code>mailtoConfig</code>: the path to the JSON file created in step 1.</li>
+<li><code>mailtoRecipients</code>: a cell array of recipient email addresses.</li>
+</ul>
+<p>The function, OspreyAutoMail, can be manually initiated at any time with a single argument, MRSCont. As a part of the automated pipeline, OspreyAutoMail is called at the conclusion of RunOspreyJob.m.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

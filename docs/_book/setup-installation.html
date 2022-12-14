@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Setup &amp; Installation | Automated MRS data analysis workflow</title>
+  <meta name="description" content="Documentation for automated MRS analysis." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Setup &amp; Installation | Automated MRS data analysis workflow" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Documentation for automated MRS analysis." />
+  <meta name="github-repo" content="schorschinho/automated-analysis-documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Setup &amp; Installation | Automated MRS data analysis workflow" />
+  
+  <meta name="twitter:description" content="Documentation for automated MRS analysis." />
+  
+
+<meta name="author" content="Georg Oeltzschner" />
+
+
+<meta name="date" content="2022-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="configuration.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="setup-installation.html"><a href="setup-installation.html"><i class="fa fa-check"></i><b>1</b> Setup &amp; Installation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="setup-installation.html"><a href="setup-installation.html#watchman"><i class="fa fa-check"></i><b>1.1</b> Watchman</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-installation.html"><a href="setup-installation.html#windows"><i class="fa fa-check"></i><b>1.1.1</b> Windows</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup-installation.html"><a href="setup-installation.html#macos"><i class="fa fa-check"></i><b>1.1.2</b> MacOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-installation.html"><a href="setup-installation.html#bidscoin"><i class="fa fa-check"></i><b>1.2</b> BIDScoin</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-installation.html"><a href="setup-installation.html#spec2nii"><i class="fa fa-check"></i><b>1.2.1</b> spec2nii</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup-installation.html"><a href="setup-installation.html#dcm2niix"><i class="fa fa-check"></i><b>1.2.2</b> dcm2niix</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="configuration.html"><a href="configuration.html"><i class="fa fa-check"></i><b>2</b> Configuration</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="configuration.html"><a href="configuration.html#watchman-1"><i class="fa fa-check"></i><b>2.1</b> Watchman</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="configuration.html"><a href="configuration.html#editing-the-watchmantrigger"><i class="fa fa-check"></i><b>2.1.1</b> Editing the watchmantrigger</a></li>
+<li class="chapter" data-level="2.1.2" data-path="configuration.html"><a href="configuration.html#activating-directory-monitoring"><i class="fa fa-check"></i><b>2.1.2</b> Activating directory monitoring</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="main-automation-script.html"><a href="main-automation-script.html"><i class="fa fa-check"></i><b>3</b> Main automation script</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="main-automation-script.html"><a href="main-automation-script.html#dicomsort-arguments"><i class="fa fa-check"></i><b>3.1</b> DICOMSORT arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="osprey-e-mail-configuration.html"><a href="osprey-e-mail-configuration.html"><i class="fa fa-check"></i><b>4</b> Osprey e-mail configuration</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="osprey-e-mail-configuration.html"><a href="osprey-e-mail-configuration.html#configure-gmail"><i class="fa fa-check"></i><b>4.1</b> Configure Gmail</a></li>
+<li class="chapter" data-level="4.2" data-path="osprey-e-mail-configuration.html"><a href="osprey-e-mail-configuration.html#configure-osprey"><i class="fa fa-check"></i><b>4.2</b> Configure Osprey</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Automated MRS data analysis workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="setup-installation" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Setup &amp; Installation<a href="setup-installation.html#setup-installation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="watchman" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Watchman<a href="setup-installation.html#watchman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Watchman is a file watching service. It will monitor a given directory and execute commands when certain conditions are met. In our case, we are going to monitor the <code>raw</code> directory for a given study and execute a series of organization and analysis steps, including sorting dicoms, bids-ifying data, and running Osprey.</p>
+<p>Installation instructions for Watchman can be found <a href="https://facebook.github.io/watchman/docs/install.html">here</a> and are summarized below:</p>
+<div id="windows" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Windows<a href="setup-installation.html#windows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First <a href="https://chocolatey.org/install">install the Chocolatey package manager</a>, similar to Homebrew on Mac or apt on Linux:
+1. Open the Windows PowerShell with Administrator rights.
+2. Make sure that the user rights are set appropriately:
+1. Type <code>Get-ExecutionPolicy</code> at the prompt and hit Enter.
+2. If it returns <code>Restricted</code>, then run <code>Set-ExecutionPolicy AllSigned</code> or <code>Set-ExecutionPolicy Bypass -Scope Process</code>.
+3. Run the following command:</p>
+<pre><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;))</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Once Chocolatey is installed, run <code>choco install watchman</code>.</li>
+</ol>
+</div>
+<div id="macos" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> MacOS<a href="setup-installation.html#macos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First <a href="">install the Homebrew package manager</a>:</p>
+<pre><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code></pre>
+<p>Then install watchman:</p>
+<pre><code>brew update
+brew install watchman</code></pre>
+</div>
+</div>
+<div id="bidscoin" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> BIDScoin<a href="setup-installation.html#bidscoin" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Detailed installation instructions can be found in the [BIDScoin documentation] (<a href="https://bidscoin.readthedocs.io/en/latest/installation.html" class="uri">https://bidscoin.readthedocs.io/en/latest/installation.html</a>) and are summarized below.</p>
+<p>Make sure that you have Python &gt;= 3.8 installed on your system. It is recommended to set up a conda environment to maintain reproducibility (<code>conda env automated</code>)</p>
+<pre><code>pip install bidscoin[all] </code></pre>
+<div id="spec2nii" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> spec2nii<a href="setup-installation.html#spec2nii" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>spec2nii</code> is the tool converting raw MRS data into NIfTI-MRS format.</p>
+<p>Install with
+<code>conda install -c conda-forge spec2nii</code>
+or
+<code>pip install spec2nii</code></p>
+<p>Detailed installation instructions at the <a href="https://github.com/wtclarke/spec2nii">spec2nii GitHub repository</a> maintained by Will Clarke.</p>
+</div>
+<div id="dcm2niix" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> dcm2niix<a href="setup-installation.html#dcm2niix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>BIDScoin also requires <code>dcm2niix</code> to be installed (this is the tool that performs the conversion from DICOM to NIfTI). Download and extract the latest release from <a href="https://github.com/rordenlab/dcm2niix" class="uri">https://github.com/rordenlab/dcm2niix</a> for your system. <a href="https://github.com/rordenlab/MRIcroGL">MRICroGL</a> has <code>dcm2niix</code> built-in.</p>
+<p>Try running <code>bidscoin -t</code> from the prompt. If there is an error, you might need to link BIDScoin with <code>dcm2niix</code>. You can obtain the location of the <code>dcm2niix</code> executable by typing</p>
+<pre><code>which dcm2niix</code></pre>
+<p>Copy this location into the template BIDScoin bidsmap configuration file (you can locate it with <code>bidscoin -t</code>), which could, for example, be at <code>/Users/JohnDoe/anaconda3/lib/python3.8/site-packages/bidscoin/heuristics/bidsmap_dccn.yaml</code>. This file should then read</p>
+<pre><code>  plugins:                          # List of plugins with plugin-specific key-value pairs (that can be used by the plugin)
+    dcm2niix2bids:                  # See dcm2niix -h and https://www.nitrc.org/plugins/mwiki/index.php/dcm2nii:MainPage#General_Usage for more info
+      command: dcm2niix             # Command to run dcm2niix, e.g. &quot;module add dcm2niix/1.0.20180622; dcm2niix&quot; or &quot;PATH=/opt/dcm2niix/bin:$PATH; dcm2niix&quot; or /opt/dcm2niix/bin/dcm2niix or &#39;&quot;C:\Program Files\dcm2niix\dcm2niix.exe&quot;&#39; (use quotes to deal with whitespaces in the path)
+      args: -b y -z y -i n -l n     # Argument string that is passed to dcm2niix. Tip: SPM users may want to use &#39;-z n&#39; (which produces unzipped nifti&#39;s, see dcm2niix -h for more information)
+      anon: y                       # Set this anonymization flag to &#39;y&#39; to round off age and discard acquisition date from the meta data
+      meta: [.json, .tsv, .tsv.gz]
+</code></pre>
+<p>where the path to the <code>dcm2niix</code> executable should be the value of the <code>command</code> field.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="configuration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

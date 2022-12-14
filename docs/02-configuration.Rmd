@@ -1,0 +1,61 @@
+# Configuration
+
+This chapter describes some individual configurations that the user needs to modify and adjust depending on their project organization structure. This step mostly concerns correct set up of file and directory names to execute the chain of commands for the different parts of the automated workflow.
+
+## Watchman
+
+### Editing the watchmantrigger
+
+The watchmantrigger.json file points to the directory that watchman is supposed to monitor, as well as point to the main automation script to execute.
+
+```
+This is the generic watchmantrigger.json
+[
+    "trigger", 
+    "$basedirectory/raw", 
+    {
+        "name"      :  "subtrigger"                        ,
+        "expression": ["match", "sub*" ]                   , 
+        "command"   : ["python", "$scriptdirectory/main.py", "$basedirectory"]
+    }
+]
+
+This is an example watchmantrigger.json
+[
+    "trigger", 
+    "/users/JohnDoe/projects/AutomatedMRSAnalysis/data/raw", 
+    {
+        "name"      :  "subtrigger"                        ,
+        "expression": ["match", "sub*" ]                   , 
+        "command"   : ["python", "/users/JohnDoe/projects/MRS/data/src/main.py", "/users/JohnDoe/projects/MRS/data/raw"]
+    }
+]
+```
+
+### Activating directory monitoring
+
+First, we tell watchman which BIDS raw data folder we need it to monitor. The generic command for this is
+```
+watchman watch $rawdirectory
+```
+
+In our example, we will therefore execute
+```
+watchman watch /users/JohnDoe/projects/AutomatedMRSAnalysis/data/raw
+```
+
+Then, we need to tell the watchman service which script it is supposed to execute when it discovers a change in the monitored directory:
+
+```
+watchman -j < watchmantrigger.json
+```
+
+In our example, we point to
+```
+watchman -j < /users/JohnDoe/projects/AutomatedMRSAnalysis/data/src/watchmantrigger.json
+```
+
+
+** We strongly recommend testing the later parts of the workflow before deploying the automated directory monitoring. **
+
+

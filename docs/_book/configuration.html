@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Configuration | Automated MRS data analysis workflow</title>
+  <meta name="description" content="Documentation for automated MRS analysis." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Configuration | Automated MRS data analysis workflow" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Documentation for automated MRS analysis." />
+  <meta name="github-repo" content="schorschinho/automated-analysis-documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Configuration | Automated MRS data analysis workflow" />
+  
+  <meta name="twitter:description" content="Documentation for automated MRS analysis." />
+  
+
+<meta name="author" content="Georg Oeltzschner" />
+
+
+<meta name="date" content="2022-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="setup-installation.html"/>
+<link rel="next" href="main-automation-script.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="setup-installation.html"><a href="setup-installation.html"><i class="fa fa-check"></i><b>1</b> Setup &amp; Installation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="setup-installation.html"><a href="setup-installation.html#watchman"><i class="fa fa-check"></i><b>1.1</b> Watchman</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-installation.html"><a href="setup-installation.html#windows"><i class="fa fa-check"></i><b>1.1.1</b> Windows</a></li>
+<li class="chapter" data-level="1.1.2" data-path="setup-installation.html"><a href="setup-installation.html#macos"><i class="fa fa-check"></i><b>1.1.2</b> MacOS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-installation.html"><a href="setup-installation.html#bidscoin"><i class="fa fa-check"></i><b>1.2</b> BIDScoin</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-installation.html"><a href="setup-installation.html#spec2nii"><i class="fa fa-check"></i><b>1.2.1</b> spec2nii</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup-installation.html"><a href="setup-installation.html#dcm2niix"><i class="fa fa-check"></i><b>1.2.2</b> dcm2niix</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="configuration.html"><a href="configuration.html"><i class="fa fa-check"></i><b>2</b> Configuration</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="configuration.html"><a href="configuration.html#watchman-1"><i class="fa fa-check"></i><b>2.1</b> Watchman</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="configuration.html"><a href="configuration.html#editing-the-watchmantrigger"><i class="fa fa-check"></i><b>2.1.1</b> Editing the watchmantrigger</a></li>
+<li class="chapter" data-level="2.1.2" data-path="configuration.html"><a href="configuration.html#activating-directory-monitoring"><i class="fa fa-check"></i><b>2.1.2</b> Activating directory monitoring</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="main-automation-script.html"><a href="main-automation-script.html"><i class="fa fa-check"></i><b>3</b> Main automation script</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="main-automation-script.html"><a href="main-automation-script.html#dicomsort-arguments"><i class="fa fa-check"></i><b>3.1</b> DICOMSORT arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="osprey-e-mail-configuration.html"><a href="osprey-e-mail-configuration.html"><i class="fa fa-check"></i><b>4</b> Osprey e-mail configuration</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="osprey-e-mail-configuration.html"><a href="osprey-e-mail-configuration.html#configure-gmail"><i class="fa fa-check"></i><b>4.1</b> Configure Gmail</a></li>
+<li class="chapter" data-level="4.2" data-path="osprey-e-mail-configuration.html"><a href="osprey-e-mail-configuration.html#configure-osprey"><i class="fa fa-check"></i><b>4.2</b> Configure Osprey</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Automated MRS data analysis workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="configuration" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Configuration<a href="configuration.html#configuration" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter describes some individual configurations that the user needs to modify and adjust depending on their project organization structure. This step mostly concerns correct set up of file and directory names to execute the chain of commands for the different parts of the automated workflow.</p>
+<div id="watchman-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Watchman<a href="configuration.html#watchman-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="editing-the-watchmantrigger" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Editing the watchmantrigger<a href="configuration.html#editing-the-watchmantrigger" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The watchmantrigger.json file points to the directory that watchman is supposed to monitor, as well as point to the main automation script to execute.</p>
+<pre><code>This is the generic watchmantrigger.json
+[
+    &quot;trigger&quot;, 
+    &quot;$basedirectory/raw&quot;, 
+    {
+        &quot;name&quot;      :  &quot;subtrigger&quot;                        ,
+        &quot;expression&quot;: [&quot;match&quot;, &quot;sub*&quot; ]                   , 
+        &quot;command&quot;   : [&quot;python&quot;, &quot;$scriptdirectory/main.py&quot;, &quot;$basedirectory&quot;]
+    }
+]
+
+This is an example watchmantrigger.json
+[
+    &quot;trigger&quot;, 
+    &quot;/users/JohnDoe/projects/AutomatedMRSAnalysis/data/raw&quot;, 
+    {
+        &quot;name&quot;      :  &quot;subtrigger&quot;                        ,
+        &quot;expression&quot;: [&quot;match&quot;, &quot;sub*&quot; ]                   , 
+        &quot;command&quot;   : [&quot;python&quot;, &quot;/users/JohnDoe/projects/MRS/data/src/main.py&quot;, &quot;/users/JohnDoe/projects/MRS/data/raw&quot;]
+    }
+]</code></pre>
+</div>
+<div id="activating-directory-monitoring" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Activating directory monitoring<a href="configuration.html#activating-directory-monitoring" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, we tell watchman which BIDS raw data folder we need it to monitor. The generic command for this is</p>
+<pre><code>watchman watch $rawdirectory</code></pre>
+<p>In our example, we will therefore execute</p>
+<pre><code>watchman watch /users/JohnDoe/projects/AutomatedMRSAnalysis/data/raw</code></pre>
+<p>Then, we need to tell the watchman service which script it is supposed to execute when it discovers a change in the monitored directory:</p>
+<pre><code>watchman -j &lt; watchmantrigger.json</code></pre>
+<p>In our example, we point to</p>
+<pre><code>watchman -j &lt; /users/JohnDoe/projects/AutomatedMRSAnalysis/data/src/watchmantrigger.json</code></pre>
+<p>** We strongly recommend testing the later parts of the workflow before deploying the automated directory monitoring. **</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup-installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="main-automation-script.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

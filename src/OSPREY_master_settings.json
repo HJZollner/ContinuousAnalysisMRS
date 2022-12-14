@@ -1,0 +1,8 @@
+{
+    "seqType": "unedited",
+    "ECCmetab": "0",
+    "prerequisites": {
+        "files"     : "*svs.nii.gz"    ,
+        "files_ref" : "*svs_ref.nii.gz"
+    }
+}
