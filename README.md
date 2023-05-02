@@ -9,7 +9,7 @@ Download the compiled **Osprey** code matching your OS from the [release page](h
 
 ### First steps
 
-Follow the [Setup & Installation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/HJZollner/ContinuousAnalysisMRS/develop/docs/_book/setup-installation.html) instructions to download intall the required packages. Next, follow the configuration steps to setup the continous workflow on your system.
+Follow the [Setup & Installation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/HJZollner/ContinuousAnalysisMRS/develop/docs/_book/setup-installation.html) instructions to download install the required packages. Next, follow the configuration steps to setup the continuous workflow on your system.
 
 ## Contact, Feedback, Suggestions
 
