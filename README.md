@@ -5,7 +5,11 @@ This is a repository holding an automated MRS analysis workflow for continous QA
 ## Getting started
 ### Installation
 
-Download the compiled **Osprey** code matching your OS from the [release page](https://github.com/HJZollner/ContinuousAnalysisMRS/releases), follow the installation instructions, copy the basissets folder into the applciaiton folder on your machine.
+Download the compiled **Osprey** code matching your OS from the [release page](https://github.com/HJZollner/ContinuousAnalysisMRS/releases), follow the installation instructions, copy the basissets folder into the application folder on your machine.
+
+### First steps
+
+Follow the [Setup & Installation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/HJZollner/ContinuousAnalysisMRS/develop/docs/_book/setup-installation.html) instructions to download intall the required packages. Next, follow the configuration steps to setup the continous workflow on your system.
 
 ## Contact, Feedback, Suggestions
 
